@@ -924,9 +924,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1583213a38145b2afd67bfe5a1cb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 7456648225729721979, guid: be3f08c46dae7495590ad72751a97ca6, type: 3}
-  worldHeight: 10
-  worldWidth: 10
+  width: 100
+  height: 100
+  scale: 20
+  landThreshold: 0.6
+  forestThreshold: 0.4
+  landTilePrefab: {fileID: 6318111623029611363, guid: b77842bb205c04a2ca66fa595868810e, type: 3}
+  waterTilePrefab: {fileID: 6501558827358868249, guid: 5632b4bae035d40b1b93deb90621888b, type: 3}
+  forestPrefab: {fileID: 7456648225729721979, guid: be3f08c46dae7495590ad72751a97ca6, type: 3}
 --- !u!4 &1542231633
 Transform:
   m_ObjectHideFlags: 0
