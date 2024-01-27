@@ -47,5 +47,7 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
+
+        transform.position = new Vector2(-width / 2, -height / 2);
     }
 }

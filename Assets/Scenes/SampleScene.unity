@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100.583725, y: 94}
-  m_SizeDelta: {x: 622.2307, y: 205.79}
+  m_AnchoredPosition: {x: 1.9126, y: 44.70529}
+  m_SizeDelta: {x: 443.83, y: 788.3793}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281396591
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 205.58887, w: 161.37605}
+  m_margin: {x: 0, y: 0, z: 3.9234009, w: -0.4543152}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -335,18 +335,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422555953}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 336669222}
-  m_Father: {fileID: 526535232}
+  m_Father: {fileID: 1991230652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336, y: -192}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 251.91281, y: 36}
+  m_SizeDelta: {x: 443.8256, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &422555955
 MonoBehaviour:
@@ -672,7 +672,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1991230652}
-  - {fileID: 422555954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -927,7 +926,7 @@ MonoBehaviour:
   width: 100
   height: 100
   scale: 20
-  landThreshold: 0.6
+  landThreshold: 0.5
   forestThreshold: 0.4
   landTilePrefab: {fileID: 6318111623029611363, guid: b77842bb205c04a2ca66fa595868810e, type: 3}
   waterTilePrefab: {fileID: 6501558827358868249, guid: 5632b4bae035d40b1b93deb90621888b, type: 3}
@@ -1133,12 +1132,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 281396590}
+  - {fileID: 422555954}
   m_Father: {fileID: 526535232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.90471, y: 0}
-  m_SizeDelta: {x: -417.8094, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 242.30133, y: 0}
+  m_SizeDelta: {x: 515.3973, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1991230653
 MonoBehaviour:
