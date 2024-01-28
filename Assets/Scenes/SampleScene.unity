@@ -605,7 +605,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.14796193, g: 0.18214026, b: 0.23584908, a: 0}
+  m_BackGroundColor: {r: 0.16346046, g: 0.14965291, b: 0.1792453, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1012,10 +1012,14 @@ MonoBehaviour:
   width: 100
   height: 100
   scale: 20
+  mountainThreshold: 0.8
   landThreshold: 0.5
+  sandThreshold: 0.4
   forestThreshold: 0.4
   landTilePrefab: {fileID: 6318111623029611363, guid: b77842bb205c04a2ca66fa595868810e, type: 3}
   waterTilePrefab: {fileID: 6501558827358868249, guid: 5632b4bae035d40b1b93deb90621888b, type: 3}
+  sandTilePrefab: {fileID: 3649248415131512380, guid: 0f147ca4d16ef47ffa29344f18f60c67, type: 3}
+  mountainPrefab: {fileID: 6065008566173361053, guid: 58dcb80f3ae0b4bcbad0dee470161eaf, type: 3}
   forestPrefab: {fileID: 7456648225729721979, guid: be3f08c46dae7495590ad72751a97ca6, type: 3}
   hero: {fileID: 492467759}
 --- !u!4 &1542231633

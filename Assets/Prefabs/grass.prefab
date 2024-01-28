@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1115679823174847511}
   - component: {fileID: 8316540854962236821}
   m_Layer: 0
-  m_Name: dirt
+  m_Name: grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1074305709, guid: 75ec582f40cdd4e1c9bd012e84ff9ca4, type: 3}
-  m_Color: {r: 0.5566038, g: 0.31096804, b: 0, a: 1}
+  m_Color: {r: 0.4383214, g: 0.6698113, b: 0.3254272, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

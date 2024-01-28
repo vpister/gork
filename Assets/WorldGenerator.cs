@@ -11,7 +11,7 @@ public class Creature : Entity
 public class Entity
 {
     public string name;
-    public Location parent;
+    public Location parent; // reference to location where entity is placed.
 }
 public class Location
 {
@@ -27,11 +27,19 @@ public class WorldGenerator : MonoBehaviour
     public int width = 100;
     public int height = 100;
     public float scale = 20f; // Determines the scale of the noise
+    public float mountainThreshold = 0.6f; // Threshold for land generation
     public float landThreshold = 0.5f; // Threshold for land generation
+    public float sandThreshold = 0.4f; // Threshold for land generation
+
     public float forestThreshold = 0.6f; // Threshold for forest generation
 
     public GameObject landTilePrefab;
     public GameObject waterTilePrefab;
+    public GameObject sandTilePrefab;
+
+    public GameObject mountainPrefab;
+
+
     public GameObject forestPrefab;
 
     public GameObject hero;
@@ -58,12 +66,19 @@ public class WorldGenerator : MonoBehaviour
                 float perlinValue = Mathf.PerlinNoise(x / scale, y / scale);
 
                 // Create land or water based on the perlin value
-                GameObject tilePrefab = perlinValue > landThreshold ? landTilePrefab : waterTilePrefab;
+                GameObject tilePrefab = perlinValue > sandThreshold ? (perlinValue > landThreshold ? landTilePrefab : sandTilePrefab) : (waterTilePrefab);
                 GameObject tile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity);
 
                 tile.transform.parent = this.gameObject.transform;
 
                 world[x, y] = new Location { tileType = tilePrefab.name, occupant = null, x = x, y = y };
+
+                if(perlinValue > mountainThreshold)
+                {
+                    GameObject t = Instantiate(mountainPrefab, new Vector3(x, y), Quaternion.identity, tile.transform);
+                    t.transform.parent = this.transform;
+                    world[x, y].occupant = new Entity { name = "mountain", parent = world[x, y] };
+                }
 
                 // If it's land, check for forest generation
                 if (perlinValue > landThreshold)
