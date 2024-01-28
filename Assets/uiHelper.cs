@@ -15,8 +15,8 @@ public class uiHelper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventSystem.current.SetSelectedGameObject(textBox,null);
-        //textBox.GetComponent<TMP_InputField>().OnPointerClick(null);
+        textBox.GetComponent<TMP_InputField>().Select();
+        textBox.GetComponent<TMP_InputField>().ActivateInputField();
 
         textBox.GetComponent<TMP_InputField>().onEndEdit.AddListener(inputText);
 
@@ -27,6 +27,7 @@ public class uiHelper : MonoBehaviour
 
     public void inputText(string cmd)
     {
+        EventSystem.current.SetSelectedGameObject(textBox, null);
         Debug.Log(cmd);
         string[] parts = cmd.Split(" ");
 
@@ -81,6 +82,8 @@ public class uiHelper : MonoBehaviour
 
 
         textBox.GetComponent<TMP_InputField>().text = "";
+        textBox.GetComponent<TMP_InputField>().Select();
+        textBox.GetComponent<TMP_InputField>().ActivateInputField();
     }
     // Update is called once per frame
     void Update()
