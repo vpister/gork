@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 422555953}
+  gameText: {fileID: 281396589}
 --- !u!1 &772078829
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,17 +6,19 @@ using UnityEngine;
 
 public class Creature : Entity
 {
-    public string name;
 }
 
 public class Entity
 {
     public string name;
+    public Location parent;
 }
 public class Location
 {
     public string tileType;
     public Entity occupant;
+    public int x;
+    public int y;
 }
 
 public class WorldGenerator : MonoBehaviour
@@ -33,6 +35,8 @@ public class WorldGenerator : MonoBehaviour
     public GameObject forestPrefab;
 
     public GameObject hero;
+    public Entity heroRef;
+
 
     public Location[,] world;
 
@@ -59,7 +63,7 @@ public class WorldGenerator : MonoBehaviour
 
                 tile.transform.parent = this.gameObject.transform;
 
-                world[x, y] = new Location { tileType = tilePrefab.name, occupant = null };
+                world[x, y] = new Location { tileType = tilePrefab.name, occupant = null, x = x, y = y };
 
                 // If it's land, check for forest generation
                 if (perlinValue > landThreshold)
@@ -69,12 +73,15 @@ public class WorldGenerator : MonoBehaviour
                     {
                         GameObject t = Instantiate(forestPrefab, new Vector3(x, y), Quaternion.identity, tile.transform);
                         t.transform.parent = this.transform;
-                        world[x, y].occupant = new Entity { name = "tree" };
+                        world[x, y].occupant = new Entity { name = "tree", parent = world[x, y] };
                     } else
                     {
                         if (!placedHero)
                         {
-                            world[x, y].occupant = new Creature { name = "hero" };
+                            world[x, y].occupant = new Creature { name = "hero", parent = world[x, y] };
+                            heroRef = world[x, y].occupant;
+                            Debug.Log(heroRef.parent.x + "," + heroRef.parent.y);
+                            Debug.Log(world[heroRef.parent.x, heroRef.parent.y].occupant.name);
                             hero.transform.position = new Vector3(x, y);
                             hero.transform.parent = this.transform;
                             placedHero = true;
@@ -86,7 +93,30 @@ public class WorldGenerator : MonoBehaviour
             }
         }
 
-        transform.position = new Vector2(-width / 2, -height / 2);
-        hero.transform.parent = null;
+    }
+
+    public void moveOccupant(int srcx, int srcy, int dstx, int dsty)
+    {
+        Entity temp = world[srcx, srcy].occupant;
+        temp.parent = world[dstx, dsty];
+        world[srcx, srcy].occupant = null;
+        world[dstx, dsty].occupant = temp;
+
+        Debug.Log(temp);
+        if(temp.name.Equals("hero"))
+        {
+            hero.transform.position = new Vector3(dstx, dsty);
+        }
+    }
+
+    public string look(int srcx, int srcy)
+    {
+        if(world[srcx, srcy].occupant != null)
+        {
+            return "You see a " + world[srcx, srcy].occupant.name;
+        } else
+        {
+            return "You see open " + world[srcx, srcy].tileType;
+        }
     }
 }
