@@ -61,22 +61,30 @@ public class uiHelper : MonoBehaviour
             Debug.Log(wm.heroRef.parent.x + "," + wm.heroRef.parent.y);
             if (parts[1].Equals("up"))
             {
-                wm.moveOccupant(wm.heroRef.parent.x, wm.heroRef.parent.y, wm.heroRef.parent.x, wm.heroRef.parent.y + 1);
+                wm.moveOccupant(wm.heroRef.parent.x, 
+                    wm.heroRef.parent.y, wm.heroRef.parent.x, 
+                    wm.heroRef.parent.y + 1, wm.heroRef);
             }
 
             if (parts[1].Equals("down"))
             {
-                wm.moveOccupant(wm.heroRef.parent.x, wm.heroRef.parent.y, wm.heroRef.parent.x, wm.heroRef.parent.y - 1);
+                wm.moveOccupant(wm.heroRef.parent.x, 
+                    wm.heroRef.parent.y, wm.heroRef.parent.x, 
+                    wm.heroRef.parent.y - 1, wm.heroRef);
             }
 
             if (parts[1].Equals("right"))
             {
-                wm.moveOccupant(wm.heroRef.parent.x, wm.heroRef.parent.y, wm.heroRef.parent.x+1, wm.heroRef.parent.y);
+                wm.moveOccupant(wm.heroRef.parent.x, 
+                    wm.heroRef.parent.y, wm.heroRef.parent.x+1, 
+                    wm.heroRef.parent.y, wm.heroRef);
             }
 
             if (parts[1].Equals("left"))
             {
-                wm.moveOccupant(wm.heroRef.parent.x, wm.heroRef.parent.y, wm.heroRef.parent.x-1, wm.heroRef.parent.y);
+                wm.moveOccupant(wm.heroRef.parent.x, 
+                    wm.heroRef.parent.y, wm.heroRef.parent.x-1, 
+                    wm.heroRef.parent.y, wm.heroRef);
             }
         }
 

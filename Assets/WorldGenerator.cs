@@ -16,7 +16,7 @@ public class Entity
 public class Location
 {
     public string tileType;
-    public Entity occupant;
+    public List<Entity> occupant;
     public int x;
     public int y;
 }
@@ -71,13 +71,13 @@ public class WorldGenerator : MonoBehaviour
 
                 tile.transform.parent = this.gameObject.transform;
 
-                world[x, y] = new Location { tileType = tilePrefab.name, occupant = null, x = x, y = y };
+                world[x, y] = new Location { tileType = tilePrefab.name, occupant = new List<Entity>(), x = x, y = y };
 
                 if(perlinValue > mountainThreshold)
                 {
                     GameObject t = Instantiate(mountainPrefab, new Vector3(x, y), Quaternion.identity, tile.transform);
                     t.transform.parent = this.transform;
-                    world[x, y].occupant = new Entity { name = "mountain", parent = world[x, y] };
+                    world[x, y].occupant.Add( new Entity { name = "mountain", parent = world[x, y] });
                 }
 
                 // If it's land, check for forest generation
@@ -88,15 +88,15 @@ public class WorldGenerator : MonoBehaviour
                     {
                         GameObject t = Instantiate(forestPrefab, new Vector3(x, y), Quaternion.identity, tile.transform);
                         t.transform.parent = this.transform;
-                        world[x, y].occupant = new Entity { name = "tree", parent = world[x, y] };
+                        world[x, y].occupant.Add(new Entity { name = "tree", parent = world[x, y] });
                     } else
                     {
                         if (!placedHero)
                         {
-                            world[x, y].occupant = new Creature { name = "hero", parent = world[x, y] };
-                            heroRef = world[x, y].occupant;
+                            world[x, y].occupant.Add( new Creature { name = "hero", parent = world[x, y] } );
+                            heroRef = world[x, y].occupant[0];
                             Debug.Log(heroRef.parent.x + "," + heroRef.parent.y);
-                            Debug.Log(world[heroRef.parent.x, heroRef.parent.y].occupant.name);
+                            // Debug.Log(world[heroRef.parent.x, heroRef.parent.y].occupant.name);
                             hero.transform.position = new Vector3(x, y);
                             hero.transform.parent = this.transform;
                             placedHero = true;
@@ -110,15 +110,15 @@ public class WorldGenerator : MonoBehaviour
 
     }
 
-    public void moveOccupant(int srcx, int srcy, int dstx, int dsty)
+    public void moveOccupant(int srcx, int srcy, int dstx, int dsty, Entity target)
     {
-        Entity temp = world[srcx, srcy].occupant;
-        temp.parent = world[dstx, dsty];
-        world[srcx, srcy].occupant = null;
-        world[dstx, dsty].occupant = temp;
 
-        Debug.Log(temp);
-        if(temp.name.Equals("hero"))
+        target.parent = world[dstx, dsty];
+        world[srcx,srcy].occupant.Remove(target);
+        world[dstx,dsty].occupant.Add(target);
+
+        Debug.Log(target);
+        if(target.name.Equals("hero"))
         {
             hero.transform.position = new Vector3(dstx, dsty);
         }
@@ -126,9 +126,13 @@ public class WorldGenerator : MonoBehaviour
 
     public string look(int srcx, int srcy)
     {
-        if(world[srcx, srcy].occupant != null)
+        if(world[srcx, srcy].occupant.Count != 0)
         {
-            return "You see a " + world[srcx, srcy].occupant.name;
+            string s = "";
+            foreach (Entity e in world[srcx,srcy].occupant){
+                s += "You see a " + e.name + "\n";
+            }
+            return s;
         } else
         {
             return "You see open " + world[srcx, srcy].tileType;
