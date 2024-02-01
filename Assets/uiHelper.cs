@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class uiHelper : MonoBehaviour
 {
@@ -35,55 +36,73 @@ public class uiHelper : MonoBehaviour
 
         if(parts[0].Equals("look"))
         {
+            int steps;
+            if (parts.Length > 2)
+            {
+                steps = Int32.Parse(parts[2]);
+            }
+            else
+            {
+                steps = 1;
+            }
             if(parts[1].Equals("up"))
             {
-                text.text += wm.look(wm.heroRef.parent.x, wm.heroRef.parent.y+1) + "\n";
+                text.text += wm.look(wm.heroRef.parent.x, wm.heroRef.parent.y + steps) + "\n";
             }
 
             if (parts[1].Equals("down"))
             {
-                text.text += wm.look(wm.heroRef.parent.x, wm.heroRef.parent.y - 1) + "\n";
+                text.text += wm.look(wm.heroRef.parent.x, wm.heroRef.parent.y - steps) + "\n";
             }
 
             if (parts[1].Equals("right"))
             {
-                text.text += wm.look(wm.heroRef.parent.x+1, wm.heroRef.parent.y) + "\n";
+                text.text += wm.look(wm.heroRef.parent.x + steps, wm.heroRef.parent.y) + "\n";
             }
 
             if (parts[1].Equals("left"))
             {
-                text.text += wm.look(wm.heroRef.parent.x - 1, wm.heroRef.parent.y) + "\n";
+                text.text += wm.look(wm.heroRef.parent.x - steps, wm.heroRef.parent.y) + "\n";
             }
         }
 
         if (parts[0].Equals("move"))
         {
+            int steps;
+            if (parts.Length > 2)
+            {
+                steps = Int32.Parse(parts[2]);
+            }
+            else
+            {
+                steps = 1;
+            }
             Debug.Log(wm.heroRef.parent.x + "," + wm.heroRef.parent.y);
             if (parts[1].Equals("up"))
             {
                 wm.moveOccupant(wm.heroRef.parent.x, 
                     wm.heroRef.parent.y, wm.heroRef.parent.x, 
-                    wm.heroRef.parent.y + 1, wm.heroRef);
+                    wm.heroRef.parent.y + steps, wm.heroRef);
             }
 
             if (parts[1].Equals("down"))
             {
                 wm.moveOccupant(wm.heroRef.parent.x, 
                     wm.heroRef.parent.y, wm.heroRef.parent.x, 
-                    wm.heroRef.parent.y - 1, wm.heroRef);
+                    wm.heroRef.parent.y - steps, wm.heroRef);
             }
 
             if (parts[1].Equals("right"))
             {
                 wm.moveOccupant(wm.heroRef.parent.x, 
-                    wm.heroRef.parent.y, wm.heroRef.parent.x+1, 
+                    wm.heroRef.parent.y, wm.heroRef.parent.x + steps, 
                     wm.heroRef.parent.y, wm.heroRef);
             }
 
             if (parts[1].Equals("left"))
             {
                 wm.moveOccupant(wm.heroRef.parent.x, 
-                    wm.heroRef.parent.y, wm.heroRef.parent.x-1, 
+                    wm.heroRef.parent.y, wm.heroRef.parent.x - steps, 
                     wm.heroRef.parent.y, wm.heroRef);
             }
         }
